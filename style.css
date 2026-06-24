@@ -1,35 +1,159 @@
-body {
-  font-family: Arial;
-  text-align: center;
-  background: #f2f6ff;
+const allData = [
+  // BASIC
+  { char:"あ", romaji:"a", level:"easy" },
+  { char:"い", romaji:"i", level:"easy" },
+  { char:"う", romaji:"u", level:"easy" },
+  { char:"え", romaji:"e", level:"easy" },
+  { char:"お", romaji:"o", level:"easy" },
+
+  // K
+  { char:"か", romaji:"ka", level:"medium" },
+  { char:"き", romaji:"ki", level:"medium" },
+  { char:"く", romaji:"ku", level:"medium" },
+  { char:"け", romaji:"ke", level:"medium" },
+  { char:"こ", romaji:"ko", level:"medium" },
+
+  // S
+  { char:"さ", romaji:"sa", level:"medium" },
+  { char:"し", romaji:"shi", level:"medium" },
+  { char:"す", romaji:"su", level:"medium" },
+  { char:"せ", romaji:"se", level:"medium" },
+  { char:"そ", romaji:"so", level:"medium" },
+
+  // T
+  { char:"た", romaji:"ta", level:"medium" },
+  { char:"ち", romaji:"chi", level:"medium" },
+  { char:"つ", romaji:"tsu", level:"medium" },
+  { char:"て", romaji:"te", level:"medium" },
+  { char:"と", romaji:"to", level:"medium" },
+
+  // N
+  { char:"な", romaji:"na", level:"medium" },
+  { char:"に", romaji:"ni", level:"medium" },
+  { char:"ぬ", romaji:"nu", level:"medium" },
+  { char:"ね", romaji:"ne", level:"medium" },
+  { char:"の", romaji:"no", level:"medium" },
+
+  // H
+  { char:"は", romaji:"ha", level:"medium" },
+  { char:"ひ", romaji:"hi", level:"medium" },
+  { char:"ふ", romaji:"fu", level:"medium" },
+  { char:"へ", romaji:"he", level:"medium" },
+  { char:"ほ", romaji:"ho", level:"medium" },
+
+  // M Y R W N
+  { char:"ま", romaji:"ma", level:"medium" },
+  { char:"み", romaji:"mi", level:"medium" },
+  { char:"む", romaji:"mu", level:"medium" },
+  { char:"め", romaji:"me", level:"medium" },
+  { char:"も", romaji:"mo", level:"medium" },
+
+  { char:"や", romaji:"ya", level:"medium" },
+  { char:"ゆ", romaji:"yu", level:"medium" },
+  { char:"よ", romaji:"yo", level:"medium" },
+
+  { char:"ら", romaji:"ra", level:"medium" },
+  { char:"り", romaji:"ri", level:"medium" },
+  { char:"る", romaji:"ru", level:"medium" },
+  { char:"れ", romaji:"re", level:"medium" },
+  { char:"ろ", romaji:"ro", level:"medium" },
+
+  { char:"わ", romaji:"wa", level:"medium" },
+  { char:"を", romaji:"wo", level:"medium" },
+  { char:"ん", romaji:"n", level:"medium" },
+
+  // DAKUTEN + MARU (HARD)
+  { char:"が", romaji:"ga", level:"hard" },
+  { char:"ぎ", romaji:"gi", level:"hard" },
+  { char:"ぐ", romaji:"gu", level:"hard" },
+  { char:"げ", romaji:"ge", level:"hard" },
+  { char:"ご", romaji:"go", level:"hard" },
+
+  { char:"ざ", romaji:"za", level:"hard" },
+  { char:"じ", romaji:"ji", level:"hard" },
+  { char:"ず", romaji:"zu", level:"hard" },
+  { char:"ぜ", romaji:"ze", level:"hard" },
+  { char:"ぞ", romaji:"zo", level:"hard" },
+
+  { char:"だ", romaji:"da", level:"hard" },
+  { char:"ぢ", romaji:"ji", level:"hard" },
+  { char:"づ", romaji:"zu", level:"hard" },
+  { char:"で", romaji:"de", level:"hard" },
+  { char:"ど", romaji:"do", level:"hard" },
+
+  { char:"ば", romaji:"ba", level:"hard" },
+  { char:"び", romaji:"bi", level:"hard" },
+  { char:"ぶ", romaji:"bu", level:"hard" },
+  { char:"べ", romaji:"be", level:"hard" },
+  { char:"ぼ", romaji:"bo", level:"hard" },
+
+  { char:"ぱ", romaji:"pa", level:"hard" },
+  { char:"ぴ", romaji:"pi", level:"hard" },
+  { char:"ぷ", romaji:"pu", level:"hard" },
+  { char:"ぺ", romaji:"pe", level:"hard" },
+  { char:"ぽ", romaji:"po", level:"hard" },
+];
+
+let level = "easy";
+let current;
+let score = 0;
+
+function setLevel(lvl) {
+  level = lvl;
+  score = 0;
+  document.getElementById("score").innerText = "Score: 0";
+  nextQuestion();
 }
 
-#grid {
-  display: grid;
-  grid-template-columns: repeat(5, 70px);
-  justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
+function speak(text) {
+  const msg = new SpeechSynthesisUtterance(text);
+  msg.lang = "ja-JP";
+  speechSynthesis.speak(msg);
 }
 
-button {
-  font-size: 30px;
-  padding: 10px;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  background: white;
+function getPool() {
+  return allData.filter(x => {
+    if (level === "easy") return x.level === "easy";
+    if (level === "medium") return x.level !== "hard";
+    return true; // hard = semua
+  });
 }
 
-button:hover {
-  background: #d6ebff;
-}
+function nextQuestion() {
+  const pool = getPool();
+  current = pool[Math.floor(Math.random() * pool.length)];
 
-#infoBox {
-  margin-top: 20px;
-  font-size: 20px;
-  padding: 10px;
-  border: 2px solid black;
-  display: inline-block;
-  background: white;
+  document.getElementById("question").innerText = current.char;
+  speak(current.char);
+
+  let options = [current.romaji];
+
+  while (options.length < 4) {
+    let rand = pool[Math.floor(Math.random() * pool.length)].romaji;
+    if (!options.includes(rand)) options.push(rand);
+  }
+
+  options.sort(() => Math.random() - 0.5);
+
+  const box = document.getElementById("choices");
+  box.innerHTML = "";
+
+  options.forEach(opt => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.innerText = opt;
+
+    btn.onclick = () => {
+      if (opt === current.romaji) {
+        score++;
+        alert("Benar 👍");
+      } else {
+        alert("Salah ❌ Jawaban: " + current.romaji);
+      }
+
+      document.getElementById("score").innerText = "Score: " + score;
+    };
+
+    box.appendChild(btn);
+  });
 }
