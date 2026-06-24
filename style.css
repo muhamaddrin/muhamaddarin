@@ -1,0 +1,35 @@
+body {
+  font-family: Arial;
+  text-align: center;
+  background: #f2f6ff;
+}
+
+#grid {
+  display: grid;
+  grid-template-columns: repeat(5, 70px);
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+button {
+  font-size: 30px;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background: white;
+}
+
+button:hover {
+  background: #d6ebff;
+}
+
+#infoBox {
+  margin-top: 20px;
+  font-size: 20px;
+  padding: 10px;
+  border: 2px solid black;
+  display: inline-block;
+  background: white;
+}
