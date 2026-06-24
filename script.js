@@ -1,30 +1,25 @@
-const data = {
-  "あ": "a", "い": "i", "う": "u", "え": "e", "お": "o",
-  "か": "ka", "き": "ki", "く": "ku", "け": "ke", "こ": "ko",
-  "さ": "sa", "し": "shi", "す": "su", "せ": "se", "そ": "so",
-  "た": "ta", "ち": "chi", "つ": "tsu", "て": "te", "と": "to",
-  "な": "na", "に": "ni", "ぬ": "nu", "ね": "ne", "の": "no",
-  "は": "ha", "ひ": "hi", "ふ": "fu", "へ": "he", "ほ": "ho",
-  "ま": "ma", "み": "mi", "む": "mu", "め": "me", "も": "mo",
-  "や": "ya", "ゆ": "yu", "よ": "yo",
-  "ら": "ra", "り": "ri", "る": "ru", "れ": "re", "ろ": "ro",
-  "わ": "wa", "を": "wo", "ん": "n"
-};
+body {
+  font-family: Arial;
+  text-align: center;
+  background: #eef5ff;
+}
 
-const grid = document.getElementById("grid");
-const info = document.getElementById("infoBox");
+button {
+  margin: 5px;
+  padding: 10px;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
 
-// bikin tombol otomatis
-for (let char in data) {
-  let btn = document.createElement("button");
-  btn.innerText = char;
+.choice {
+  display: block;
+  margin: 8px auto;
+  width: 150px;
+  background: white;
+}
 
-  btn.onclick = function () {
-    info.innerHTML = `
-      <h2>${char}</h2>
-      <p>Romaji: <b>${data[char]}</b></p>
-    `;
-  };
-
-  grid.appendChild(btn);
+.choice:hover {
+  background: #d6ebff;
 }
