@@ -3,62 +3,88 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nihongo Belajar Gratis</title>
+<title>Belajar Bareng Darin</title>
 
 <style>
-body{
-font-family:Arial,sans-serif;
+*{
 margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI,sans-serif;
+}
+
+body{
 background:#f5f7fb;
+color:#333;
 }
 
 header{
-background:#2563eb;
-color:white;
+background:#0f172a;
 padding:20px;
-text-align:center;
+position:sticky;
+top:0;
 }
 
 nav{
-background:white;
-padding:15px;
-text-align:center;
-box-shadow:0 2px 5px rgba(0,0,0,.1);
+display:flex;
+justify-content:space-between;
+align-items:center;
+max-width:1200px;
+margin:auto;
 }
 
-nav a{
-margin:10px;
-text-decoration:none;
-color:#333;
+.logo{
+color:white;
+font-size:24px;
 font-weight:bold;
 }
 
+.menu a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+}
+
 .hero{
-padding:60px 20px;
+background:linear-gradient(135deg,#2563eb,#06b6d4);
+color:white;
+padding:100px 20px;
 text-align:center;
 }
 
 .hero h1{
-font-size:40px;
+font-size:50px;
+margin-bottom:15px;
+}
+
+.hero p{
+font-size:20px;
+margin-bottom:25px;
 }
 
 .btn{
 display:inline-block;
-background:#2563eb;
-color:white;
-padding:12px 20px;
+padding:15px 30px;
+background:white;
+color:#2563eb;
 border-radius:10px;
 text-decoration:none;
-margin-top:15px;
+font-weight:bold;
 }
 
 .container{
 max-width:1200px;
 margin:auto;
-padding:20px;
+padding:50px 20px;
 }
 
-.cards{
+.title{
+text-align:center;
+margin-bottom:40px;
+font-size:35px;
+}
+
+.grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:20px;
@@ -66,17 +92,41 @@ gap:20px;
 
 .card{
 background:white;
-padding:20px;
+padding:25px;
 border-radius:15px;
-box-shadow:0 2px 10px rgba(0,0,0,.08);
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.card h3{
+margin-bottom:10px;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+margin-top:30px;
+}
+
+.stat{
+background:white;
+padding:25px;
+border-radius:15px;
+text-align:center;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
 }
 
 footer{
-margin-top:50px;
-background:#111827;
+background:#0f172a;
 color:white;
-padding:20px;
 text-align:center;
+padding:30px;
+margin-top:50px;
 }
 </style>
 
@@ -84,73 +134,95 @@ text-align:center;
 <body>
 
 <header>
-<h1>🇯🇵 Nihongo Belajar Gratis</h1>
-<p>Materi, Soal JLPT, Kanji dan Kosakata</p>
-</header>
-
 <nav>
+<div class="logo">🇯🇵 Belajar Bareng Darin</div>
+
+<div class="menu">
 <a href="#">Beranda</a>
 <a href="#">Materi</a>
 <a href="#">Soal</a>
-<a href="#">Kanji</a>
-<a href="#">Kosakata</a>
 <a href="#">JLPT</a>
+<a href="#">Kanji</a>
+</div>
 </nav>
+</header>
 
 <section class="hero">
 <h1>Belajar Bahasa Jepang Gratis</h1>
-<p>Materi lengkap untuk pemula sampai JLPT N1</p>
-<a class="btn" href="#">Mulai Belajar</a>
+<p>Materi Lengkap • Latihan Soal • Persiapan JLPT</p>
+
+<a href="#" class="btn">Mulai Belajar</a>
 </section>
 
 <div class="container">
 
-<h2>📚 Materi Populer</h2>
+<h2 class="title">📚 Materi Belajar</h2>
 
-<div class="cards">
+<div class="grid">
 
 <div class="card">
-<h3>Hiragana</h3>
-<p>Belajar huruf dasar Jepang.</p>
+<h3>🔤 Hiragana</h3>
+<p>Belajar huruf dasar Jepang dari nol.</p>
 </div>
 
 <div class="card">
-<h3>Katakana</h3>
-<p>Belajar huruf untuk kata asing.</p>
+<h3>🔠 Katakana</h3>
+<p>Belajar huruf untuk kata serapan.</p>
 </div>
 
 <div class="card">
-<h3>Kanji Dasar</h3>
+<h3>📖 Grammar N5</h3>
+<p>Tata bahasa untuk pemula.</p>
+</div>
+
+<div class="card">
+<h3>🈶 Kanji Dasar</h3>
 <p>Kanji yang sering muncul di JLPT.</p>
 </div>
 
 <div class="card">
-<h3>Grammar N5</h3>
-<p>Tata bahasa untuk pemula.</p>
+<h3>📚 Kosakata</h3>
+<p>Ribuan kosakata Jepang sehari-hari.</p>
 </div>
-
-</div>
-
-<h2 style="margin-top:40px;">✍️ Latihan Soal</h2>
 
 <div class="card">
-<h3>Contoh Soal</h3>
+<h3>🎧 Listening</h3>
+<p>Latihan mendengarkan bahasa Jepang.</p>
+</div>
 
-<p>日本へ行きます。</p>
+</div>
 
-<p>Apa arti 行きます ?</p>
+<h2 class="title" style="margin-top:60px;">🏆 Statistik Website</h2>
 
-<button>Pergi</button>
-<button>Datang</button>
-<button>Makan</button>
-<button>Minum</button>
+<div class="stats">
+
+<div class="stat">
+<h1>500+</h1>
+<p>Materi</p>
+</div>
+
+<div class="stat">
+<h1>1000+</h1>
+<p>Kosakata</p>
+</div>
+
+<div class="stat">
+<h1>200+</h1>
+<p>Kanji</p>
+</div>
+
+<div class="stat">
+<h1>100+</h1>
+<p>Soal JLPT</p>
+</div>
 
 </div>
 
 </div>
 
 <footer>
-© 2026 Nihongo Belajar Gratis
+<p>© 2026 Belajar Bareng Darin 🇯🇵</p>
+<p>Follow TikTok untuk materi terbaru</p>
 </footer>
 
 </body>
